@@ -34,7 +34,7 @@ Autoware: 192.168.10.12
     ![image](images/modifySendControl.png) 
    
 # 使用说明
-1. 启动该autoware rviz
+1. 启动autoware rviz
    ```
    source ~/autoware/install/setup.bash
    ros2 launch autoware_launch panosim_simulator.launch.xml map_path:=$HOME/autoware_map/PanoTown01 vehicle_model:=sample_vehicle sensor_model:=sample_sensor_kit  > autoware_launch.log 2>1
