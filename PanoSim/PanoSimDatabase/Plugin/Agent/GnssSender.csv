@@ -1,0 +1,8 @@
+Name,DisplayName,DisplayName_CN,Type,Default,Group,Tips
+RemoteIP,Remote IP,远端地址,string,127.0.0.1,,
+GnssPort,Gnss Port,端口,int,10000,,
+GnssFreq,Gnss Freq,频率,int,10,,
+ImuPort,IMU Port,端口,int,10001,,
+ImuFreq,IMU Freq,频率,int,100,,
+EgoStatusPort,EgoStatus Port,端口,int,10002,,
+EgoStatusFreq,EgoStatus Freq,频率,int,30,,

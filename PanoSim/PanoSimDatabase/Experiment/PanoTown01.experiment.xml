@@ -1,0 +1,69 @@
+<Experiment readonly="false" description="" groupId="0" mode="normal">
+  <World link="PanoTown01" traffic="false" hostId="0" nodeId="0" />
+  <Vehicle link="C_Class_Sedan_PanoSim2AutoWare" hostId="0" nodeId="0" type="PanoSim-Raw" />
+  <Task>
+    <Trajectory Z="0">
+      <KeyPoints>
+        <KeyPoint X="9.42" Y="305.14" type="Road" Lane="E0_1" />
+      </KeyPoints>
+      <WayPoints>
+        <WayPoint X="9.42" Y="305.14" />
+        <WayPoint X="9.11" Y="205.14" />
+      </WayPoints>
+      <Edges>
+        <Edge id="E0" Direction="S" />
+      </Edges>
+    </Trajectory>
+    <SpeedTable>
+      <SpeedTime Time="0" Speed="0" />
+    </SpeedTable>
+    <ParkingSpot enable="False" Number="0" />
+  </Task>
+  <TrafficObjects>
+    <TrafficObject type="Pedestrian" shape="1">
+      <Trigger type="Time" value="0" />
+      <Task>
+        <Trajectory Static="false" Z="0">
+          <KeyPoints>
+            <KeyPoint X="6.2" Y="296.61" type="Road" Lane="E0_0" />
+          </KeyPoints>
+          <WayPoints>
+            <WayPoint X="6.2" Y="296.61" />
+            <WayPoint X="5.89" Y="196.61" />
+          </WayPoints>
+        </Trajectory>
+        <SpeedTable>
+          <SpeedTime Time="0" Speed="2" />
+        </SpeedTable>
+      </Task>
+    </TrafficObject>
+    <TrafficObject type="Vehicle" shape="5">
+      <Trigger type="Time" value="0" />
+      <Task>
+        <Trajectory Static="false" Z="0">
+          <KeyPoints>
+            <KeyPoint X="9.15" Y="217.54" type="Road" Lane="E0_1" />
+          </KeyPoints>
+          <WayPoints>
+            <WayPoint X="9.15" Y="217.54" />
+            <WayPoint X="8.84" Y="117.54" />
+          </WayPoints>
+        </Trajectory>
+        <SpeedTable>
+          <SpeedTime Time="0" Speed="0" />
+        </SpeedTable>
+      </Task>
+    </TrafficObject>
+  </TrafficObjects>
+  <Disturbance />
+  <Agent>
+    <Plugin internal="false" hostId="0" nodeId="3" link="LidarSender.py" LidarName="SurroundLidarPointCloudSensor.0" Frequency="10" MaxCount="23040" RemoteIP="192.168.10.12" Port="10004" Compression="True" Parameter="True" />
+    <Plugin internal="false" hostId="0" nodeId="1" link="GnssSender.py" RemoteIP="192.168.10.12" GnssPort="10000" GnssFreq="100" ImuPort="10001" ImuFreq="100" EgoStatusPort="10002" EgoStatusFreq="100" Parameter="True" />
+    <Plugin internal="false" hostId="0" nodeId="2" link="CameraSender.py" CameraName="MonoCameraSensor.0" ResolutionWidth="800" ResolutionHeight="400" RemoteIP="192.168.10.12" Port="10003" Compression="True" Parameter="True" />
+    <Plugin internal="false" hostId="0" nodeId="4" link="ControlReceiver.py" LocalIP="127.0.0.1" Port="9500" Parameter="True" />
+    <Plugin internal="false" hostId="0" nodeId="0" link="xControl.dll" Parameters="" Parameter="True" />
+  </Agent>
+  <Evaluator />
+  <Simulation Solver="ode1" Step="0.001" StopTime="0" Speed="1" UtcTime="0" MultiAgentMode="None" ServerIP="127.0.0.1" ServerPort="1018" />
+  <GlobalVariables Variable0="0" Variable1="0" Variable2="0" Variable3="0" Variable4="0" Variable5="0" Variable6="0" Variable7="0" Variable8="0" Variable9="0" />
+</Experiment>

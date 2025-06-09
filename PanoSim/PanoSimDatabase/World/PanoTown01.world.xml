@@ -1,0 +1,71 @@
+<World readonly="false">
+  <Field link="" />
+  <Net link="PanoTown01\PanoTown01.net.xml" Seed="0" Style="City" Elevation="false">
+    <Lanes Texture="Asphalt" FrictionCoefficient="0.8" Wetness="0" SnowPack="0" Cracks="0.1" Dirtiness="0.3" Opacity="1" />
+    <LaneLines />
+    <Junctions />
+  </Net>
+  <Facilities>
+    <TrafficSigns />
+    <Obstacles />
+    <TrafficLights>
+      <TrafficLight X="96.915" Y="145.94" Yaw="-180.01" type="1" Edge="24" Timer="False" Z="0" Pitch="0" Roll="0">
+        <Light Direction="S" Phase="G27Y3R30" />
+      </TrafficLight>
+      <TrafficLight X="81.028" Y="138.002" Yaw="-269.99" type="1" Edge="12" Timer="False" Z="0" Pitch="0" Roll="0">
+        <Light Direction="S" Phase="R27Y3G30" />
+      </TrafficLight>
+      <TrafficLight X="84.077" Y="117.045" Yaw="-0.01" type="1" Edge="-23" Timer="False" Z="0" Pitch="0" Roll="0">
+        <Light Direction="S" Phase="G27Y3R30" />
+      </TrafficLight>
+    </TrafficLights>
+    <Crosswalks>
+      <Crosswalk type="3" X="86" Y="140.5" Z="0" Yaw="-88.73" Length="8.285" Width="3.2">
+        <TrafficLight type="2" X="85.548" Y="141.704" Z="0" Yaw="-91.27" Pitch="0" Roll="0" Edge="" Timer="True">
+          <Light Direction="S" Phase="R28Y3G29" />
+        </TrafficLight>
+        <TrafficLight type="2" X="95.366" Y="139.245" Z="0" Yaw="88.73" Pitch="0" Roll="0" Edge="" Timer="True">
+          <Light Direction="S" Phase="R28Y3G29" />
+        </TrafficLight>
+      </Crosswalk>
+      <Crosswalk type="3" X="99.86" Y="126.93" Z="0" Yaw="-0.01" Length="8.438" Width="3.2">
+        <TrafficLight type="2" X="98.381" Y="126.345" Z="0" Yaw="-179.99" Pitch="0" Roll="0" Edge="" Timer="True">
+          <Light Direction="S" Phase="G29Y3R28" />
+        </TrafficLight>
+        <TrafficLight type="2" X="101.324" Y="136.467" Z="0" Yaw="0.01" Pitch="0" Roll="0" Edge="" Timer="True">
+          <Light Direction="S" Phase="G29Y3R28" />
+        </TrafficLight>
+      </Crosswalk>
+      <Crosswalk type="3" X="86.447" Y="121.955" Z="0" Yaw="-90" Length="7.62" Width="3.2">
+        <TrafficLight type="2" X="85.548" Y="123.33" Z="0" Yaw="-90" Pitch="0" Roll="0" Edge="" Timer="True">
+          <Light Direction="S" Phase="R29Y3G28" />
+        </TrafficLight>
+        <TrafficLight type="2" X="95.365" Y="120.329" Z="0" Yaw="90" Pitch="0" Roll="0" Edge="" Timer="True">
+          <Light Direction="S" Phase="R29Y3G28" />
+        </TrafficLight>
+      </Crosswalk>
+    </Crosswalks>
+    <Marks />
+    <ParkingSpots>
+      <ParkingSpot type="4" X="23.5" Y="191.038" Z="0" Yaw="-90" Line="Full" Arrow="true" BarType="None" LockType="None" LockStatus="Off" Opacity="1" Length="6" Width="3" Angle="90" Color="Yellow" Permit="None" />
+      <ParkingSpot type="4" X="23.5" Y="194.038" Z="0" Yaw="-90" Line="Full" Arrow="true" BarType="None" LockType="None" LockStatus="Off" Opacity="1" Length="6" Width="3" Angle="90" Color="Yellow" Permit="None" />
+      <ParkingSpot type="4" X="23.5" Y="197.038" Z="0" Yaw="-90" Line="Full" Arrow="true" BarType="None" LockType="None" LockStatus="Off" Opacity="1" Length="6" Width="3" Angle="90" Color="Yellow" Permit="None" />
+      <ParkingSpot type="4" X="19" Y="176.966" Z="0" Yaw="0" Line="Full" Arrow="true" BarType="None" LockType="None" LockStatus="Off" Opacity="1" Length="6" Width="3" Angle="90" Color="White" Permit="None" />
+      <ParkingSpot type="4" X="19" Y="170.966" Z="0" Yaw="0" Line="Full" Arrow="true" BarType="None" LockType="None" LockStatus="Off" Opacity="1" Length="6" Width="3" Angle="90" Color="White" Permit="None" />
+      <ParkingSpot type="4" X="19" Y="164.966" Z="0" Yaw="0" Line="Full" Arrow="true" BarType="None" LockType="None" LockStatus="Off" Opacity="1" Length="6" Width="3" Angle="90" Color="White" Permit="None" />
+      <ParkingSpot type="4" X="19" Y="158.966" Z="0" Yaw="0" Line="Full" Arrow="true" BarType="None" LockType="None" LockStatus="Off" Opacity="1" Length="6" Width="3" Angle="90" Color="White" Permit="None" />
+      <ParkingSpot type="4" X="23.5" Y="188.038" Z="0" Yaw="-90" Line="Full" Arrow="true" BarType="None" LockType="None" LockStatus="Off" Opacity="1" Length="6" Width="3" Angle="90" Color="Yellow" Permit="None" />
+    </ParkingSpots>
+    <RSUs />
+    <Isolators />
+    <Ceilings />
+    <Interchanges />
+  </Facilities>
+  <Environment Type="Sunny">
+    <Air Temperature="30" Pressure="1" Humidity="60" />
+    <Precipitation Type="None" ParticleSize="0.5" ParticleCapacity="5000" FallingAlpha="5" FallingBeta="5" FallingSpeed="0.8" />
+    <Fog Visibility="500" />
+  </Environment>
+  <Lighting Alpha="60" Beta="50" Intensity="100000" Ambient="400" StreetLight="off" VehicleLight="off" SkyBox="Day" />
+  <Traffic Seed="0" Density="7" Pedestrian="0" CarWeight="97" VanWeight="0" BusWeight="0" OtherWeight="3" CautiousDriverWeight="100" CommonDriverWeight="0" RadicalDriverWeight="0" />
+</World>

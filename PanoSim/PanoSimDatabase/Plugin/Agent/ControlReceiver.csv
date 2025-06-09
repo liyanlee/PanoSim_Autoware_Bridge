@@ -1,0 +1,3 @@
+Name,DisplayName,DisplayName_CN,Type,Default,Group,Tips
+LocalIP,Local IP,本地地址,string,127.0.0.1,,
+Port,Port,端口,int,9500,,
