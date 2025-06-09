@@ -6,8 +6,10 @@ PanoSim和Autoware联合仿真教程。基于PanoSim V32.9和Autoware.universe�
 2. Autoware：包含联合仿真中Autoware端的相关文件
 # 环境说明
 PanoSim和Autoware电脑需要在一个网段，并且互相可以ping通，本例的地址如下
+```
 PanoSim：192.168.10.10
 Autoware: 192.168.10.12
+```
 # 安装说明
 1. 完成PanoSim V32.9 和 Autoware.universe 版本的安装。
 2. 将目录PanoSim\PanoSimDatabase 下文件拷贝到PanoSim V32.9的Database下的相同目录
