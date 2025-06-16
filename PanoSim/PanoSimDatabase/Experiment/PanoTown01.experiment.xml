@@ -60,8 +60,8 @@
     <Plugin internal="false" hostId="0" nodeId="3" link="LidarSender.py" LidarName="SurroundLidarPointCloudSensor.0" Frequency="10" MaxCount="23040" RemoteIP="192.168.10.12" Port="10004" Compression="True" Parameter="True" />
     <Plugin internal="false" hostId="0" nodeId="1" link="GnssSender.py" RemoteIP="192.168.10.12" GnssPort="10000" GnssFreq="100" ImuPort="10001" ImuFreq="100" EgoStatusPort="10002" EgoStatusFreq="100" Parameter="True" />
     <Plugin internal="false" hostId="0" nodeId="2" link="CameraSender.py" CameraName="MonoCameraSensor.0" ResolutionWidth="800" ResolutionHeight="400" RemoteIP="192.168.10.12" Port="10003" Compression="True" Parameter="True" />
-    <Plugin internal="false" hostId="0" nodeId="4" link="ControlReceiver.py" LocalIP="127.0.0.1" Port="9500" Parameter="True" />
     <Plugin internal="false" hostId="0" nodeId="0" link="xControl.dll" Parameters="" Parameter="True" />
+    <Plugin internal="false" hostId="0" nodeId="0" link="ControlReceiver.py" LocalIP="127.0.0.1" Port="9500" Parameter="True" />
   </Agent>
   <Evaluator />
   <Simulation Solver="ode1" Step="0.001" StopTime="0" Speed="1" UtcTime="0" MultiAgentMode="None" ServerIP="127.0.0.1" ServerPort="1018" />
