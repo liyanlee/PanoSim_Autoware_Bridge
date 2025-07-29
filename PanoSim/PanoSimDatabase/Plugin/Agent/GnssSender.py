@@ -48,11 +48,15 @@ def ModelStart(userData):
     userData["last_egostatus"] = 0
     userData["egostatus_peer"] = (userData["parameters"]["RemoteIP"], int(userData["parameters"]["EgoStatusPort"]))
 
+    userData["OffsetX"] = float(userData["parameters"]["OffSetX"])
+    userData["OffsetY"] = float(userData["parameters"]["OffSetY"])
 
 
 def ModelOutput(userData):
     if userData["time"] - userData["last_gnss"] >= userData["gnss_step"]:  # send gnss related
         ts, x, y, z, yaw, pitch, roll, speed =  userData["egoBus"].readHeader()
+        x += userData["OffsetX"]
+        y += userData["OffsetY"]
         send_data = struct.pack("<iddddddd",*(ts,x,y,z,yaw,pitch,roll,speed))
         userData["gnss_sock"].sendto(send_data,userData["gnss_peer"])
         #print("finish send gnss to peer time {}".format(userData["time"]))

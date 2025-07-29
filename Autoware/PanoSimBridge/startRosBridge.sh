@@ -14,7 +14,9 @@ if [ ! -d "$LogPath" ]; then
     mkdir -p "$LogPath"
 fi
 
-startArray=("RecvIMU" "RecvImage" "RecvGNSS" "RecvEgoStatus" "RecvLidar" "tf_node" "SendControl")
+startArray=("RecvEgoStatus" "RecvIMU" "RecvImage"  "RecvGNSS"  "RecvLidar" "tf_node" "SendControl")
+
+#startArray=("RecvIMU" "RecvImage" "RecvGNSS" "RecvEgoStatus"  "tf_node" "SendControl")
 
 for value in ${startArray[@]};do
     echo "Starting $value"

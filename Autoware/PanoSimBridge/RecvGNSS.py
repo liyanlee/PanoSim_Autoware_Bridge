@@ -6,7 +6,9 @@ from rosgraph_msgs.msg import Clock
 from rclpy.qos import *
 from builtin_interfaces.msg import Time
 from geometry_msgs.msg import PoseWithCovarianceStamped, PoseStamped
+from autoware_adapi_v1_msgs.msg import MrmState
 from autoware_auto_vehicle_msgs.msg import VelocityReport
+from autoware_adapi_v1_msgs.msg import LocalizationInitializationState
 
 import struct
 import traceback
@@ -14,12 +16,14 @@ import time
 import socket
 from scipy.spatial.transform import Rotation
 import math
+import time
 
 # this if for chuangxinyuan
-# x offset
-offset_x = 45.54 
+# x offset 33978.3  0.0 for NongDa
+# 45.54 20.07 for Town01
+offset_x = 0.0
 # y offset
-offset_y = 20.07
+offset_y = 0.0
 # wheelbase
 wheel = 2.578
 
@@ -37,6 +41,10 @@ class GNSSNode(Node):
             durability=QoSDurabilityPolicy.RMW_QOS_POLICY_DURABILITY_VOLATILE,
         )
 
+        self.publisher_LocalizationWithCovarianceStamped = self.create_publisher(
+            PoseWithCovarianceStamped, "/localization/pose_estimator/pose_with_covariance", qos
+        )
+
         self.publisher_PoseWithCovarianceStamped = self.create_publisher(
             PoseWithCovarianceStamped, "/sensing/gnss/pose_with_covariance", qos
         )
@@ -51,15 +59,22 @@ class GNSSNode(Node):
                        durability = QoSDurabilityPolicy.VOLATILE)
         )
         # 移除这个发布器
-        # self.publisher_PosLocallization = self.create_publisher(
-        #     PoseStamped, "/localization/pose", qos
-        # )
+        self.publisher_CurrentPos = self.create_publisher(
+             PoseStamped, "current_pose", qos
+         )
 
         self.create_subscription(
             PoseWithCovarianceStamped,
             "/initialpose",
             self.initialpose_callback,
             10)   
+
+        self.create_subscription(
+            LocalizationInitializationState,
+            "/localization/initialization_state",
+            self.localization_state_callback,
+            10)   
+
 
 
         #get data from panosim
@@ -73,18 +88,36 @@ class GNSSNode(Node):
         self.lastData = None
         self.get_data = False
         self.need_gnss = True
-        self.current_velocity = 0.0
+        
+        self.mrm_state = 3
+        self.mrm_behavior = 2 
+        self.current_velocity = 10
+
+        self.create_subscription(
+            MrmState,
+            '/system/fail_safe/mrm_state',
+            self.mrm_callback,
+            10
+        )
+
+
         self.create_subscription(
             VelocityReport,
             '/vehicle/status/velocity_status',
             self.velocity_callback,
             10
         )
+
+        self.last_gnss_time = time.time()
     
 
     def initialpose_callback(self, msg):
-        if self.need_gnss is False:  # this means msg comes from rviz
+        cut_time = time.time()
+        #print("cur time is {}".format(cut_time))
+        
+        if (cut_time - self.last_gnss_time) > 5 and self.need_gnss is False:  # this means msg comes from rviz
             self.need_gnss = True
+            self.last_gnss_time = cut_time
             print("reset gnss signal")
         
 
@@ -95,8 +128,19 @@ class GNSSNode(Node):
         rclpy.shutdown()
 
     
+    def mrm_callback(self, msg):
+        print(msg)
+        self.mrm_state = msg.state
+        self.mrm_behavior = msg.behavior
+
     def velocity_callback(self, msg):
         self.current_velocity = msg.longitudinal_velocity
+
+    def localization_state_callback(self,msg):
+        print(msg)
+        if msg.state in (0,1):
+            self.need_gnss = True
+
 
     def do(self):
         try:
@@ -105,9 +149,10 @@ class GNSSNode(Node):
             self.lastData = data
         except Exception as e:
             if self.get_data is False:
-                time.sleep(0.001*self.timer_period)
+                time.sleep(0)
             else:
-                print("get gnss data")
+                print("mrm {}".format(self.mrm_state))
+                #print("get gnss data")
                 self.get_data = False
                 current_time = self.get_clock().now()
                 CurSec = current_time.seconds_nanoseconds()[0]
@@ -171,10 +216,11 @@ class GNSSNode(Node):
 
                 # 检查速度是否为0
                 print(f"Current longitudinal_velocity: {self.current_velocity}")
-                if self.need_gnss is True and abs(self.current_velocity) < 0.01:
+                if self.need_gnss is True and self.mrm_behavior == 1 and self.mrm_state == 1 and abs(self.current_velocity) < 0.01:
+                    time.sleep(1)
                     print("Ready to publish /initialpose")
                     self.need_gnss = False
-                    print("Publishing /initialpose with data:", GNSS_cov)
+                    #print("Publishing /initialpose with data:", GNSS_cov)
                     self.publisher_PoseInitial.publish(GNSS_cov)
                     # 移除这行
                     # self.publisher_PosLocallization.publish(GNSS_Pose)
@@ -182,10 +228,12 @@ class GNSSNode(Node):
 
                 self.publisher_PoseStamped.publish(GNSS_Pose)
                 self.publisher_PoseWithCovarianceStamped.publish(GNSS_cov)
+                self.publisher_LocalizationWithCovarianceStamped.publish(GNSS_cov)
+                self.publisher_CurrentPos.publish(GNSS_Pose)
                 # 移除这行
                 # self.publisher_PosLocallization.publish(GNSS_Pose)
                 print("finish gnss status {}".format(time.time()))
-                print("ros time {}".format(current_time.to_msg()))
+                #print("ros time {}".format(current_time.to_msg()))
         
 
 
@@ -204,6 +252,7 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
 
 
 
